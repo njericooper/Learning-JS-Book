@@ -234,7 +234,7 @@ function makeInsurancePolicy(o) {
 
 makeInsurable(Car);
 
-class InsurancePolicy() {}
+
 const ADD_POLICY = Symbol();
 const GET_POLICY = Symbol();
 const IS_INSURED = Symbol();
