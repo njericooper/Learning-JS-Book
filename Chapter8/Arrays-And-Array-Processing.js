@@ -169,5 +169,46 @@ for(let suit of ['H', 'C', 'D', 'S'])
      const suits = { 'H': '\u2665', 'C': '\u2663', 'D': '\u2666', 'S': '\u2660'  };
      const values = { 1: 'A', 11: 'J', 12: 'Q', 13: 'K'};
 
-     for(let i=2; i<)
+     for(let i=2; i<=10; 1++) values[i] = i;
+     return values[c.value] + suits[c.suit];
  }
+ cards.filter(c => c.value === 2).map(cardToString);
+
+ cards.filter(c => c.value > 10 && c.suit === 'H').map(cardToString);
+
+ //Reduce
+
+ const arr = [5, 7, 2, 4];
+ const sum = arr.reduce((a, x) => a += x, 0);
+
+ const words = [" Beachball", "Rodeo", "Angel", "Ardvark", "Xylophone", "November", "Chocolare", "Papaya", "Uniform", "Joker", "Clover", "Bali"];
+ const alphabtical = words.reduce((a, x) => { 
+     if(!a[x[0]]) a[x[0]] = [];
+        a[x[0]].push(x);
+        return a; }, {});
+
+const data = [3.3, 5, 7.2, 12, 4, 6, 10.3];
+const stats = data.reduce((a, x) => {
+    a.N++;
+    let delta = x - a.mean;
+    a.mean += delta/a.N;
+    a.M2 += delta*(x - a.mean);
+    return a;
+}, { N: 0, mean: 0, M2: 0 });
+if(stats.N > 2) {
+    stats.variance = stats.M2 /(stats.N - 1);
+    stats.stdev = Math.sqrt(stats.variance);
+}
+
+const words = ["Beachball", "Rodeo", "Angel", "Ardvark", "Xylophone", "November", "Chocolate", "Papaya", "Uniform", "Joker", "Clover", "Bali"];
+const longWords = words.reduce((a, w) => w.length>6 ? a+" "+w : a, "").trim();
+
+//Array Methods and Deleted or Never-Defined Elements
+
+const arr = Array(10).map(function(x) { return 5 });
+const arr = [1, 2, 3, 4, 5];
+delete arr[2];
+arr.map(x => 0);
+
+//String Joining
+arrayName.join()
