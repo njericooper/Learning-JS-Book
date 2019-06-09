@@ -77,6 +77,54 @@ function scale(p) {
     return { x: p.x * zoom, y: p.y * zoom };
 },
 function translate(p) {
-    return { x: p.x + offset[0], y: p.y + offset[1]; };
+    return { x: p.x + offset[0], y: p.y + offset[1], };
 },
 ];
+
+const p = { x: 1, y: 1 };
+let p2 = p;
+for(let i=0; i<pipeline.length; i++) {
+    p2 = pipeline[i](p2);
+}
+
+//Pass a Function into a Function
+function sum(arr, f) {
+    if(typeof f != 'function') f = x => x;
+
+    return arr.reduce((a, x) => a += f(x),0);
+}
+sum([1, 2, 3]);
+sum([1, 2, 3], x => x*x);
+sum([1, 2, 3], x => Math.pow(x, 3));
+
+//Return a Function from a Function
+
+function sumOfSquares(arr) {
+    return sum(arr, x => x*x);
+}
+
+function newSummer(f) {
+    return arr => sum(arr, f);
+}
+
+const sumOfSquares = newSummer(x => x*x);
+const sumOfCubes = newSummer(x => Math.pow(x, 3));
+sumOfSquares([1, 2, 3]);
+sumOfCubes([1, 2, 3]);
+
+//Recursion
+
+function findNeedle(haystack) {
+    if(haystack.length === 0)
+    if(haystack.shift() === 'needle')
+    return findNeedle(haystack);
+}
+
+findNeedle(['hay', 'hay', 'hay', 'needle', 'hay', 'hay']);
+
+//OR
+
+function fact(n) {
+    if(n === 0) return 1;
+    return n * fact(n-1);
+}
