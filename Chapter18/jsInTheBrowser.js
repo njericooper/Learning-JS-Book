@@ -102,3 +102,101 @@ const port = 7070;
 server.listen(port, function(){
     console.log(`Ajax server started on port ${port}`);
 });
+
+const debug = require('debug')('main');
+debug("starting");
+
+let lastMessage;
+
+module.exports = function(prefix) {
+    return function(message) {
+        const now = Date.now();
+        const sinceLastMessage = now -(lastMessage || now);
+        console.log(`${prefix} ${message} +${sinceLastMessage}ms`);
+        lastMessage = now;
+    }
+}
+
+const debug1 = require('./debug')('one');
+const debug2 = require('./debug')('one');
+
+debug1('started first debugger!')
+debug2('started second debugger!')
+
+setTimeout(function() {
+    debug1('after some time..');
+    debug2('what happens?')
+}, 200);
+
+//File Access System
+const fs = require('fs');
+fs.readdir(_dirname, function(err, files) {
+    if(err) return console.error('Unable to read directory contents');
+    console.log(`Contents of ${_dirname}:`);
+    console.log(files.map(f => '\t' + f).join('\n'));
+});
+
+//Process
+const fs = require('fs');
+fs.readdir('data', function(err, files) {
+    if(err) {
+        console.erroe("fatal error: couldn't read data directory.");
+        process.exit(1);
+    }
+    const txtFiles = files = files.filter(f => /\.txt$/i.test(f));
+    if(txtFiles.length === 0) {
+        console.log("No . txt files to process.");
+        process.exit(0);
+    }
+});
+
+//Operating Systems
+
+const os = require('os');
+
+console.log("Hostname: " + os.hostname());
+console.log("OS type: " + os.type());
+console.log("OS Platform: " + os.platform());
+
+//Child Processes
+
+const exec = require('child_process').exec;
+exec('dir', function(err, stdout, stderr) {
+    if(err) return console.error('Error executins "dir"');
+    stdout - stdout.toString();
+    console.log(stdout);
+    stderr = stderr.toString();
+    if(stderr !== ''){
+        console.error('error');
+        console.error(stderr);
+    }
+});
+
+//Streams
+const ws = fs.createWriteStream('stream.txt', { encoding: 'utf8' });
+ws.write('line 1/n');
+ws.write('line 2\n');
+ws.end();
+
+//Web Servers
+
+const http = require('http');
+const server = http.createServer(function(req, res) {
+    console.log(`${req.method} ${req.url}`);
+    res.end('Hello world');
+});
+const port = 8000;
+server.listen(port, function(){
+    console.log(`server started on port ${port}`);
+});
+
+const server = http.createServer(function(req, res) {
+    if(req.method === 'GET' && req.url === '/favicon.ico'){
+        const fs = require('fs');
+        fs.createReadStream('favicon.ico');
+        fs.pipe(res);
+    } else {
+        console.log(`${req.method} ${req.url}`);
+        res.end('Hello world');
+    }
+});
