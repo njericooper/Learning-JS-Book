@@ -185,7 +185,7 @@ console.log(sam3);
 delete sam3.speak;
 console.log(sam3.speak());*/
 
-//Number, String, and Boolean Objects
+/*//Number, String, and Boolean Objects
 const s = "hello";
 s.toUpperCase();
 var sU = s.toUpperCase();
@@ -194,4 +194,128 @@ console.log(sU);
 s.rating = 3;
 s.rating;
 var r = s.rating;
-console.log(r);
+console.log(r); */
+
+/*//Arrays
+ const a1 = [1, 2, 3, 4];
+ const a2 = [1, 'two', 3, null];
+ const a3 = [
+     "What the hammer? What the chain?",
+     "In what furnace was thy brain?",
+     "What the anvil? What dread grasp", 
+     "Dare its deadly terrors clasp?",
+ ];
+ const a4 = [
+     { name: "Ruby", hardness: 9 },
+     { name: "Diamond", hardness: 10 },
+     { name: "Topaz", hardness: 8 },
+ ];
+ const a5 = [
+     [1, 3, 5],
+     [2, 4, 6],
+ ];
+console.log(a1);
+console.log(a2);
+console.log(a3);
+console.log(a4); 
+
+const arr = ['a', 'b', 'c'];
+arr[0];
+console.log(arr[0]);
+console.log(arr.length);
+console.log(arr[arr.length -1]);
+const arr2 = [1, 2, 'c', 4, 5];
+arr2[2] = 3;
+console.log(arr2);*/
+
+
+/*//Trailing Commas in Objecta and Arrays
+
+const arr = [
+    "One", 
+    "Two", 
+    "Three",
+];
+console.log(arr);
+const o = {
+    one: 1,
+    two: 2,
+    three: 3,
+};
+console.log(o);*/
+
+
+/*//Dates
+const now = new Date();
+now;
+console.log(now);
+const halloween = new Date(2016, 9, 31);
+console.log(halloween);
+const halloweenParty = new Date(2016, 9, 31, 19, 0);
+console.log(halloweenParty);
+halloweenParty.getFullYear();
+halloweenParty.getMonth();
+halloweenParty.getDate();
+halloweenParty.getDay();
+halloweenParty.getHours();
+halloweenParty.getMinutes();
+halloweenParty.getSeconds();
+halloweenParty.getMilliseconds();
+console.log(halloweenParty.getFullYear());
+console.log(halloweenParty.getMonth());
+console.log(halloweenParty.getDate());
+console.log(halloweenParty.getDay());
+console.log(halloweenParty.getHours());
+console.log(halloweenParty.getMinutes());
+console.log(halloweenParty.getSeconds());
+console.log(halloweenParty.getMilliseconds());*/
+
+/*//Regular Expressions
+const email = /\b[a-z0-9._-]+@[a-z_-]+?(?:\.[a-z]+)+\b/;
+const phone = /(:?\+1)?(:?\(\d{3}\)\s?|\d{3}[\s-]?)d{3}[\s-]?\d{4}/;
+console.log(email);
+console.log(phone);*/
+
+/*//Data Type Conversion
+//conveting to numbers
+const numStr = "33.3";
+const num = Number(numStr);
+const a = parseInt("16 volts", 10);
+const b = parseInt("3a", 16);
+const c = parseFloat("15.5 kph");
+console.log(a);
+console.log(b);
+console.log(c);
+const d = new Date();
+const ts = d.valueOf();
+const ba = true;
+const n = ba ? 1 : 0;
+console.log(d);
+console.log(ts);
+console.log(ba);
+console.log(n);*/
+
+
+
+/*//Converting to String
+const n = 33.5;
+n;
+const s = n.toString();
+s;
+console.log(n);
+console.log(s);
+
+const arr = [1, true, "hello"];
+arr.toString();
+console.log(arr.toString());*/
+
+
+//Converting to Boolean
+
+const n = 0;
+const b1 = !!n;
+const b2 = Boolean(n);
+
+console.log(n);
+console.log(b1);
+console.log(b2);
