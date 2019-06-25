@@ -335,12 +335,19 @@ console.log(funds);*/
 
 
 let firstPrime = null;
+var bigArrayOfNumbers = [];
 
+const n = 1;
 function isPrime(n) {
     for(var i = 2; i < n; i++)
       if(n % i === 0) return false;
     return n > 1;
 }
+
+let i = 0;
+ for(; i < bigArrayOfNumbers.length; i++) {
+     if(isPrime(bigArrayOfNumbers[i])) break;
+ }
 
 for(let n of bigArrayOfNumbers) {
     if(isPrime(n) && firstPrime === null) firstPrime = n;
@@ -354,10 +361,7 @@ for(let n of bigArrayOfNumbers) {
 }
 console.log(firstPrime);
 
- let i = 0;
- for(; i < bigArrayOfNumbers.length; i++) {
-     if(isPrime(bigArrayOfNumbers[i])) break;
- }
+
 console.log(isPrime(n)); //array has to be iterable
 if(i === bigArrayOfNumbers.length) console.log('No prime numbers!');
 else console.log(`First prime number found at position ${i}`);
@@ -382,3 +386,6 @@ for(let i=0; i<bigArrayOfNumbers.length; i++) {
 for(let i=bigArrayOfNumbers.length-1; i >=0; i--){
     if(isPrime(bigArrayOfNumbers[i])) bigArrayOfNumbers.splice(i, 1);
 }
+
+console.log(bigArrayOfNumbers.length);
+ 

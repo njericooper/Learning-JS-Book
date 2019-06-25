@@ -91,7 +91,7 @@ try {
 }*/
 
 //Try... Catch...Finally
-try {
+/*try {
     console.log("this line is executed...");
     throw new Error("whoops");
     console.log("this line is not...");
@@ -100,4 +100,4 @@ try {
 } finally {
     console.log("...always executed");
     console.log("perform clean up here");
-}
+}*/

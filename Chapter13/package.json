@@ -1,0 +1,18 @@
+{
+  "name": "chapter13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "functionsAndAbstractThinking.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "currency": "^4.1.0",
+    "money-math": "^2.5.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-currency-operators": "^1.0.1"
+  }
+}
