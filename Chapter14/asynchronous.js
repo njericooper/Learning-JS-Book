@@ -80,7 +80,7 @@ console.log(fs);*/
 console.log(readSketchyFile());*/
 
 // creating promises
-function countdown(seconds) {
+/*function countdown(seconds) {
     return new Promise(function(resolve, reject) {
         for(let i=seconds; i>0; i--){
             setTimeout(function() {
@@ -89,7 +89,7 @@ function countdown(seconds) {
             }, (seconds-i)*1000);
         }
     });
-}
+}*/
 //console.log(countdown(10)); 
 
 /*countdown(5).then(
@@ -101,7 +101,7 @@ function countdown(seconds) {
     }
 )*/
 
-const p = countdown(5);
+/*const p = countdown(5);
 p.then(function() {
     console.log("countdown completed successfully");
 });
@@ -109,4 +109,229 @@ p.catch(function(err) {
     console.log("countdown experienced an error: " + err.message);
 });
 
-console.log(p);
+console.log(p);*/
+
+
+/*unction countdown(seconds) {
+    return new Promise(function(resolve, reject) {
+        for(let i=seconds; i>0; i--) {
+            setTimeout(function() {
+                if(i===13) return reject(new Error("DEF NOT COUNTING THAT"));
+                if(i>0) console.log(i + '...');
+                else resolve(console.log("GO!"))
+            }, (seconds-i)*1000);
+        }
+    });
+}
+
+console.log(countdown(13));*/
+
+
+
+///Events
+
+/*const EventEmitter = require('events').EventEmitter;
+
+class Countdown extends EventEmitter {
+    constructor(seconds, superstitious) {
+        super();
+        this.seconds = seconds;
+        this.superstitious = !!superstitious;
+    }
+    go() {
+        const countdown = this;
+        return new Promise(function(resolve, reject) {
+            for(let i=countdown.seconds; i>0; i--) {
+                setTimeout(function() {
+                    if(countdown.superstitious && i ===13)
+                        return reject(new Error("DEF NOT COUNTING THAT"));
+                    countdown.emit('tick', i);
+                    if(i===0) resolve();
+                }, (countdown.seconds-i)*1000);
+            }
+        });
+    }
+}
+
+const c = new Countdown(5);
+
+c.on('tick', function(i) {
+    if(i>0) console.log(i + '...');
+});
+
+c.go()
+    .then(function() {
+        console.log('GO!');
+    })
+    .catch(function(err) {
+        console.error(err.message);
+    })
+
+
+const d = new Countdown(15, true)
+    .on('tick', function(i) {
+        if(i>0) console.log(i + '...');
+    });
+    
+d.go()
+    .then(function() {
+        console.log('GO!');
+    })    
+    .catch(function(err) {
+        console.error(err.message);
+    })*/
+
+/*const EventEmitter = require('events').EventEmitter;
+
+class Countdown extends EventEmitter {
+    constructor(seconds, superstitious) {
+        super();
+        this.seconds = seconds;
+        this.superstitious = !!superstitious;
+    }
+    go() {
+        const countdown = this;
+        const timeoutIds = [];
+        return new Promise(function(resolve, reject) {
+            for(let i=countdown.seconds; i>=0; i--) {
+                timeoutIds.push(setTimeout(function() {
+                    if(countdown.superstitious && i===13) {
+                        timeoutIds.forEach(clearTimeout);
+                        return reject(new Error("DEF NOT OCUNTING THAT"));
+                    }
+                    countdown.emit('tick', i);
+                    if(i===0) resolve();
+                }, (countdown.seconds-i)*1000));
+            }
+        });
+    }
+}
+
+const c = new Countdown(14);
+
+c.on('tick', function(i) {
+    if(i>0) console.log(i + '...');
+});
+
+c.go()
+    .then(function() {
+        console.log('GO!');
+    })
+    .catch(function(err) {
+        console.error(err.message);
+    })
+*/
+
+// Promise Chaining
+
+/*const EventEmitter = require('events').EventEmitter;
+
+class Countdown extends EventEmitter {
+    constructor(seconds, superstitious) {
+        super();
+        this.seconds = seconds;
+        this.superstitious = !!superstitious;
+    }
+    go() {
+        const countdown = this;
+        const timeoutIds = [];
+        return new Promise(function(resolve, reject) {
+            for(let i=countdown.seconds; i>=0; i--) {
+                timeoutIds.push(setTimeout(function() {
+                    if(countdown.superstitious && i===13) {
+                        timeoutIds.forEach(clearTimeout);
+                        return reject(new Error("DEF NOT OCUNTING THAT"));
+                    }
+                    countdown.emit('tick', i);
+                    if(i===0) resolve();
+                }, (countdown.seconds-i)*1000));
+            }
+        });
+    }
+}*/
+
+/*function launch() {
+    return new Promise(function(resolve, reject) {
+        console.log("Lift off!");
+        setTimeout(function() {
+            resolve("In orbit!");
+        }, 2*1000);
+    });
+}*/
+
+//const c = new Countdown(5)
+//    .on('tick', i => console.log(i + '...'));
+
+    /*c.go()
+        .then(launch)
+        .then(function(msg) {
+            console.log(msg);
+        })
+        .catch
+        (function(err) {
+            console.error("HOUSTON, we have a problem...");
+        })*/
+
+// Preventing Unsettled Promises
+
+/*function launch() {
+    return new Promise(function(resolve, reject) {
+        if(Math.random() < 0.5) return;
+        console.log("Lift off!");
+        setTimeout(function() {
+            resolve("In orbit!");
+        }, 2*1000);
+    });
+}
+
+
+
+function addTimeout(fn, timeout) {
+    if(timeout === undefined) timeout = 1000;
+    return function(...args) {
+        return new Promise(function(resolve, reject){
+            const tid = setTimeout(reject, timeout, 
+                new Error("promise timed out"));
+            fn(...args)
+                .then(function(...args) {
+                    clearTimeout(tid);
+                    resolve(...args);
+                })
+                .catch(function(...args) {
+                    clearTimeout(tid);
+                    reject(...args);
+                });
+        });
+    }
+}
+
+c.go()
+    .then(addTimeout(launch, 4*1000))
+    .then(function(msg) {
+        console.log(msg);
+    })
+    .catch(function(err) {
+        console.error("Houston, we have a problem: " + err.message);
+    });
+*/
+
+//Generators
+
+function nfcall(f, ...args) {
+    return new Promise(function(resolve, reject) {
+        f.call(null, ...args, function(err, ...args) {
+            if(err) return reject(err);
+            resolve(args.length<2 ? [0] : args);
+        });
+    });
+}
+
+function ptimeout(delay) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve, delay);
+    });
+}
+
+   
+
+
