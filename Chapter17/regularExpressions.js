@@ -55,16 +55,16 @@ const matches = html.match(/<br>/ig);
 console.log(matches);*/
 
 //Character Sets
-const beer99 = "99 bottles of bear on the wall " + "take 1 down and pass it around -- " + "98 bottles of beer on the wall.";
+/*const beer99 = "99 bottles of bear on the wall " + "take 1 down and pass it around -- " + "98 bottles of beer on the wall.";
 const matches = beer99.match(/0|1|2|3|4|5|6|7|8|9|/g);
 const m1 = beer99.match(/[0123456789]/g);
 const m2 = beer99.match(/[0-9]/g);
 const match = beer99.match(/[\-0-9a-z.]/ig);
 const match2 = beer99.match(/[^\0-9a-z.]/ig);
-console.log(beer99);
+console.log(beer99);*/
 
 //Named Character Sets
-const stuff = 
+/*const stuff = 
     'hight:     9\n' +
     'medium:    5\n' +
     'low:       2\n';
@@ -76,18 +76,70 @@ console.log(neatPhone);
 
 const field = '    something    ';
 const valid = /\S/.test(field);
-console.log(valid);
+console.log(valid);*/
 
 //Repitition
-const match3 = beer99.match(/[0-9][0-9][0-9][0-9][0-9][0-9]/);
+/*const match3 = beer99.match(/[0-9][0-9][0-9][0-9][0-9][0-9]/);
 const match4 = beer99.match(/[0-9]+/);
 console.log(match3);
-console.log(match4);
+console.log(match4);*/
 
 //The Period Metacharacter and escaping
-const input = "Adress: 333 Main St., Anywhere, NY, 55532. Phone: 555-555-2525.";
-const match = input.match(/\d{5}.*/);
+/*const input = "Adress: 333 Main St., Anywhere, NY, 55532. Phone: 555-555-2525.";
+const match6 = input.match(/\d{5}.*); // took slash out so I coul's comment this line
 
 const equation = "(2 + 3.5) * 7";
 const match5 = equation.match(/\(\d \+ \d\.\d\) \* \d/);
+
+console.log(match5);
+
+console.log(input.replace(/<i>(.*?)<\/i>/ig, '<strong>$1</strong>'));*/
+
+// Grouping 
+/*const text = "Visit oreilly.com today!";
+const match = text.match(/[a-z]+(?:\.com|\.org|\.edu)/i);
+console.log(match);
+
+const html = '<link rel="stylesheet" href="http://insecure.com/stuff.css">\n' + '<link rel="stylesheet" href="https://secure.com/securestuff.css">\n' + 'link rel="stylesheet" href="//anything.com/flexble.css">';
+
+const matches = html.match(/(?:https?)?\/\/[a-z][a-z0-9-]+[a-z0-9]+/ig);
+
+//Lazy Matches, Greedy Matches
+
+const input = "Regix pros know the difference between\n" + "<i>greedy</i> and <i>lazy</i> matching.";
+
+console.log(input.replace(/<i>(.*)<\/i>/ig, '<strong>$1</strong>'));
+
+console.log(input.replace(/<i>(.*?)<\/i>/ig, '<strong>$1</strong>'));*/
+
+// Backreferences
+
+/*const promo = "Openinf for XAAX is the dynamic GOOG! At the box office now!";
+const bands = promo.match(/(?:[A-Z])(?:[A-Z])\2\1/g);
+
+const html = `<img alt='A "simple" example.'>` + `<img alt="Don't abuse it!">`;
+const matches = html.match(/<img alt=(?:['"]).*?\1/g);
+
+console.log(bands);
+console.log(matches);*/
+
+//Replacing Groups
+
+let html = '<a class ="nope" href="/yep">Yep</a>';
+html = html.replace(/<a .*?(href=".*?").*?>/, '<a $1>'); 
+console.log(html);
+
+let html2 = '<a class="yep" href="/yep" id="nope">Yep</a>';
+html2 = html2.replace(/<a .*?(class=".*?").*?(href=".*?").*?>/, '<a $2 $1>');
+console.log(html2);
+
+const input = "One two three";
+console.log(input.replace(/two/, '($`)'));
+console.log(input.replace(/\w+/g, '($&)'));
+console.log(input.replace(/two/, "($')"));
+console.log(input.replace(/two/, "($$)"));
+
+
+
+
 
