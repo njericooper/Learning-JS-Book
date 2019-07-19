@@ -125,7 +125,7 @@ console.log(matches);*/
 
 //Replacing Groups
 
-let html = '<a class ="nope" href="/yep">Yep</a>';
+/*let html = '<a class ="nope" href="/yep">Yep</a>';
 html = html.replace(/<a .*?(href=".*?").*?>/, '<a $1>'); 
 console.log(html);
 
@@ -137,9 +137,41 @@ const input = "One two three";
 console.log(input.replace(/two/, '($`)'));
 console.log(input.replace(/\w+/g, '($&)'));
 console.log(input.replace(/two/, "($')"));
-console.log(input.replace(/two/, "($$)"));
+console.log(input.replace(/two/, "($$)")); */
 
+//Function Replacements
+/*const html3 = `<a class="foo" href="/foo" id="foo">Foo</a\n>` + `<A href='/foo' Class="foo">Foo</a>\n` + `<a href="/foo">Foo</a>\n` + `<a onclick="javascript:alert('foo!)" href="/foo">Foo</a>`;
 
+function sanitizeaTag(aTag) {
+    const parts = aTag.match(/<a\s+(.*?)>(.*?)<\/a>/i);
+    const attributes = parts[1]
+        .split(/\s+/);
+    return '<a' + attributes
+        .filter(attr => /^(?:class|id|href)[\s=]/i.test(attr))
+        .join(' ')
+        + '>'
+        + parts[2]
+        + '</a>';
+}
 
+console.log(sanitizeaTag(html3));
 
+console.log(html3.match(/<a .*?>(.*?)<\/a>/ig));
 
+html3.replace(/<a .*?>(.*?)<\/a>/ig, function(m, g1, offset) {
+    console.log(`<a> tag found at ${offset}. contents: ${g1}`);
+});
+
+html3.replace(/<a .*?<\/a>/ig, function(m) {
+    return sanitizeaTag(m);
+});
+
+console.log(html3.replace(/<a .*?>(.*?)<\/a>/ig, sanitizeaTag)); */
+
+//Anchoring
+const input = "It was the begining of times, it was the worst of times";
+const beginning = input.match(/^\w+/g);
+const end = input.match(/\w+$/g);
+const everything = input.match(/^.*$/g);
+const nomatch1 = input.match(/^best/);
+const nomaatch2 = input.match(/worst$/ig);
