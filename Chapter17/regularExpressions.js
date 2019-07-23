@@ -169,9 +169,70 @@ html3.replace(/<a .*?<\/a>/ig, function(m) {
 console.log(html3.replace(/<a .*?>(.*?)<\/a>/ig, sanitizeaTag)); */
 
 //Anchoring
-const input = "It was the begining of times, it was the worst of times";
+/*const input = "It was the begining of times, it was the worst of times";
 const beginning = input.match(/^\w+/g);
 const end = input.match(/\w+$/g);
 const everything = input.match(/^.*$/g);
 const nomatch1 = input.match(/^best/);
-const nomaatch2 = input.match(/worst$/ig);
+const nomatch2 = input.match(/worst$/ig);
+
+console.log(input);
+console.log(beginning);
+console.log(end);
+console.log(everything);
+console.log(nomatch1);
+console.log(nomatch2);
+
+const input2 = "One line\nTwo lines\nThree lines\nFour";
+const beginnings = input2.match(/^\w+/mg);
+const endings = input2.match(/\w+$/mg);
+
+console.log(input2);
+console.log(beginnings);
+console.log(endings);*/
+
+//word boundary matching
+
+/*const inputs = [
+    "john@doe.com", 
+    "john@doe.com is my email", 
+    "my email is john@doe.com", 
+    "use john@doe.com, my email",
+    "my email:john@doe.com.",
+];
+
+const emailMatcher = /\b[a-z][a-z0-9._-]*@[a-z][a-z0-9_-]+\.[a-z]+(?:\.[a-z]+)?\b/ig;
+
+console.log(inputs.map(s => s.replace(emailMatcher, '<a href="mailto:$&">$&</a>')));*/
+
+//Lookaheads
+
+/*function validPassword(p) {
+    return /[A-Z]/.test(p) &&
+        /[0-9]/.test(p) &&
+        /[a-z]/.test(p) &&
+        !/[^a-zA-Z0-9]/.test(p);
+}
+
+console.log(validPassword());
+
+function validPasswords(p) {
+    return /[A-Z].*[0-9][a-z]/.test(p);
+}
+
+function validPasswordz(p) {
+    return /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?!.*[^a-zA-Z0-9])/.test(p);
+}
+
+const password = "whazUpHoe12345678!";
+const theTest = validPasswordz(password);
+
+console.log(theTest);*/
+
+//Constructing Regexes Dynamically
+
+const users = ["mary", "nick", "arthur", "sam", "yvette"];
+const text = "user @arthur started the backup and 15:15, " + "and @nick and @yvette restorded it at 18:35.";
+const userRegex = new RegExp(`@(?:${users.join('|')})\\b`, 'g');
+
+console.log(text.match(userRegex));
