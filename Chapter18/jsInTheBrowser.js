@@ -63,7 +63,7 @@ highlightParaz('unique');
 
 go3();
 
-funciton removeParaHighlights() {
+function removeParaHighlights () {
     const paras = document.querySelectorAll('p.highlight');
     for(let p of paras) {
         p.classList.remove('highlight');
