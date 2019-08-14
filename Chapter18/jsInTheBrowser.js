@@ -16,9 +16,9 @@ printDOM();*/  //document not defined
 //child
 
 //DOM "Get" Methods
-//document.getElementById('content');
-//const callouts = document.getElementsByClassName('callout');
-//const paragraphs = document/getElementsByTagName('p');
+document.getElementById('content');
+const callouts = document.getElementsByClassName('callout');
+const paragraphs = document.getElementsByTagName('p');
 
 //Queryung DOM Elements
 //document.querySelectorAll('.callout');
@@ -49,23 +49,63 @@ printDOM();*/  //document not defined
 
 //styling Elements
 
-var go3 = window.onload = function highlightParaz(containing) {
+//var go3 = window.onload = 
+
+function highlightParas(containing) { 
     if(typeof containing === 'string')
-        let containing = new RegExp(`\\b${containing}\\b`, 'i');
-    const paraz = document.getElementsByTagName('p');
-    console.log(paraz);
-    for(let p of paraz) {
+        containing = new RegExp(`\\b${containing}\\b`, 'i'); 
+    const paras = document.getElementsByTagName('p'); 
+    console.log(paras);
+    for(let p of paras) {
         if(!containing.test(p.textContent)) continue;
         p.classList.add('highlight');
-    }   
+    }
 }
-highlightParaz('unique');
+highlightParas('unique');
 
-go3();
+//go3();
 
 function removeParaHighlights () {
-    const paras = document.querySelectorAll('p.highlight');
+    const paras = document.querySelectorAll('.highlight');
     for(let p of paras) {
         p.classList.remove('highlight');
+    }
+}
+
+//Data Attributes
+
+const highlightActions = document.querySelectorAll('[data-action="highlight"]');
+
+
+highlightActions[0].dataset;
+
+highlightActions[0].dataset.containing = "giraffe";
+highlightActions[0].dataset.caseSensitive = "true";
+
+//Events
+
+
+const highlightActions = document.querySelectorAll('[data-action="highlight"]'); for(let a of highlightActions) {
+    a.addEventListener('click', evt => {
+        evt.preventDefault();
+        highlightParas(a.dataset.containing);
+    }); 
+}
+
+
+const removeHighlightActions = document.querySelectorAll('[data-action="removeHighlights"]');
+for(let a of removeHighlightActions) { a.addEventListener('click', evt => {
+        evt.preventDefault();
+        removeParaHighlights();
+    });
+}
+
+function doTheThing() {
+    const highlightActions = document.querySelectorAll('[data-action="highlight"]'); 
+    for(let a of highlightActions) {
+        a.addEventListener('click', evt => {
+            evt.preventDefault();
+            highlightParas(a.dataset.containing);
+        }); 
     }
 }
